@@ -1,0 +1,34 @@
+1. Podstawy obsługi plików w systemie UNIX
+1) Co to są deskryptory plików
+    Deskryptor pliku to abstrakcyjny wskaźnik pozwalący na uzyskanie dostępu do pliku lub innego zasobu
+    obsługującego operacje wejścia/wyjścia(w unixie wszystko jest plikiem)
+   Deskryptor wskazuje na Deskrypcje pliku. Deskrypcja pliku wskazuje na inode gdzie sa przechowywane metadane jak np nazwa, rozmiar
+    W unixie deskryptor jest reprezentowany przez dodatnia liczbe całkowita
+2)
+Standardowe deskryptory plików to:
+0: Standardowe wejście - STDIN
+1: Standardowe wyjście - STDOUT
+2: Standardowe wyjście diagnostycze - STDERR
+
+3) Jakie flagi trzeba ustawić w funkcji open aby otrzymać funkcjonalność funkcji creat?
+    O_WRONLY, O_CREAT, O_TRUNC
+
+4)W wyniku wykonania polecenia umask otrzymano 0022. Jakie prawa dostępu będzie miał plik otwarty w następujący sposób:
+open(pathname, O_RDWR | O_CREAT, S_IRWXU | S_IRWXG | S_IRWXO)
+    777 NAND 022 [111 111 111 N& 000 010 010] = [ 111 111 111 & 111 101 101 ] = [ 111 101 101 ] = 755
+    - S_IRWXU (Read Write eXecute User) 00700 - wszystkie uprawnienia dla użytkownika
+    - S_IRWXG (Read Write eXecute Group) 00070 - wszystkie dla grupy
+    - S_IRWXO ( Read Write eXecute Others) 0007 - wszystkie dla pozostałych
+
+5) Co oznaczają flagi: O_WRONLY | O_CREAT | O_TRUNC? 
+Co oznacza flaga O_APPEND?
+    - **O_WRONLY** → *write only*, tylko do zapisu,
+    - **O_RDONLY** → *read only*, tylko do odczytu,
+    - **O_RDWR** → do zapisu i do odczytu,
+    - **O_APPEND** - połączenie write'a i funkcji lseek, idziemy na koniec pliku i dopisujemy treść
+
+6)
+**S_IRUSR - Read USeR -** uprawnienie odczytu przez właściciela
+**S_IWUSR - Write USeR -** uprawnienie zapisu przez właściciela
+
+
